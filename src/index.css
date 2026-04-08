@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0C0C0C;
+  --color-card: #151515;
+  --color-card-hover: #1A1A1A;
+  --color-border: #232323;
+  --color-gold: #C4A265;
+  --color-gold-light: #D4B87A;
+  --color-gold-faint: rgba(196, 162, 101, 0.07);
+  --color-cream: #F0EDE8;
+  --color-mid: #666666;
+  --color-light: #999999;
+  --color-white: #FCFCFC;
+  --color-pillar-privacy: #818CF8;
+  --color-pillar-regulatory: #FB923C;
+  --color-pillar-deal: #34D399;
+  --color-pillar-growth: #94A3B8;
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-body);
+  color: var(--color-cream);
+}
+
+::selection {
+  background: rgba(196, 162, 101, 0.3);
+  color: var(--color-cream);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-mid);
+}
+
+input, textarea, button {
+  font-family: inherit;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(var(--color-gold) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-gold) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.018;
+}
+.bg-dots {
+  background-image: radial-gradient(var(--color-gold) 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity: 0.012;
+}
+.bg-stripes {
+  background-image: linear-gradient(
+    135deg,
+    var(--color-gold) 25%, transparent 25%,
+    transparent 50%, var(--color-gold) 50%,
+    var(--color-gold) 75%, transparent 75%
+  );
+  background-size: 30px 30px;
+  opacity: 0.012;
+}
