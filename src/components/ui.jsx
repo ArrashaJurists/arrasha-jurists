@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export function Reveal({ children, delay = 0, className = "" }) {
+export function Reveal({ children, className = "" }) {
   return (
     <div className={className}>
       {children}

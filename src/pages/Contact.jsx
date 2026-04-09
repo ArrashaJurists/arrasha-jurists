@@ -21,11 +21,30 @@ const CONTACT_OPTIONS = [
 ];
 
 export default function Contact() {
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState(0);
+  const selectedOption = CONTACT_OPTIONS[selected];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    window.location.href = "mailto:contact@arrashajurists.com?subject=Enquiry from Website";
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name")?.toString().trim() ?? "";
+    const organisation = formData.get("organisation")?.toString().trim() ?? "";
+    const email = formData.get("email")?.toString().trim() ?? "";
+    const phone = formData.get("phone")?.toString().trim() ?? "";
+    const message = formData.get("message")?.toString().trim() ?? "";
+    const subject = `Website enquiry: ${selectedOption.label}`;
+    const body = [
+      `Path: ${selectedOption.label}`,
+      `Name: ${name}`,
+      `Organisation: ${organisation || "Not provided"}`,
+      `Email: ${email}`,
+      `Phone: ${phone || "Not provided"}`,
+      "",
+      "How can we help?",
+      message,
+    ].join("\n");
+
+    window.location.href = `mailto:contact@arrashajurists.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   return (
@@ -55,6 +74,7 @@ export default function Contact() {
               <button
                 key={i}
                 onClick={() => setSelected(i)}
+                aria-pressed={selected === i}
                 style={{
                   display: "block",
                   width: "100%",
@@ -80,6 +100,17 @@ export default function Contact() {
           {/* Contact form (shown after selection) */}
           {selected !== null && (
             <form onSubmit={handleSubmit} style={{ backgroundColor: "#0C0C0C", padding: 28, border: "1px solid rgba(196,162,101,0.15)" }}>
+              <div style={{ marginBottom: 20, paddingBottom: 18, borderBottom: "1px solid rgba(196,162,101,0.12)" }}>
+                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: "#C4A265", display: "block", marginBottom: 8 }}>
+                  Selected Path
+                </span>
+                <p style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, color: "#F0EDE8", fontWeight: 400, marginBottom: 4 }}>
+                  {selectedOption.label}
+                </p>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#666666", fontWeight: 300, lineHeight: 1.6 }}>
+                  {selectedOption.desc}
+                </p>
+              </div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 12, marginBottom: 12 }}>
                 {["Name", "Organisation"].map((label) => (
                   <div key={label}>
@@ -87,6 +118,8 @@ export default function Contact() {
                       {label}
                     </label>
                     <input
+                      name={label.toLowerCase()}
+                      required={label === "Name"}
                       style={{ width: "100%", fontFamily: "'DM Sans',sans-serif", fontSize: 13, padding: "10px 12px", backgroundColor: "#151515", border: "1px solid rgba(196,162,101,0.15)", color: "#F0EDE8", outline: "none" }}
                     />
                   </div>
@@ -99,7 +132,9 @@ export default function Contact() {
                       {label}
                     </label>
                     <input
+                      name={label.toLowerCase()}
                       type={type}
+                      required={label === "Email"}
                       style={{ width: "100%", fontFamily: "'DM Sans',sans-serif", fontSize: 13, padding: "10px 12px", backgroundColor: "#151515", border: "1px solid rgba(196,162,101,0.15)", color: "#F0EDE8", outline: "none" }}
                     />
                   </div>
@@ -110,7 +145,9 @@ export default function Contact() {
                   How can we help?
                 </label>
                 <textarea
+                  name="message"
                   rows={3}
+                  required
                   style={{ width: "100%", fontFamily: "'DM Sans',sans-serif", fontSize: 13, padding: "10px 12px", backgroundColor: "#151515", border: "1px solid rgba(196,162,101,0.15)", color: "#F0EDE8", outline: "none", resize: "vertical" }}
                 />
               </div>
