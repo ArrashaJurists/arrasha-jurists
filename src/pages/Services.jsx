@@ -1,15 +1,30 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { SERVICE_CATS, BUNDLES, HOW_IT_WORKS } from "../data";
 
 export default function Services() {
+  const [searchParams] = useSearchParams();
+  const selectedCategory = searchParams.get("category");
   const [query, setQuery] = useState("");
   const filtered = query.trim()
     ? SERVICE_CATS
         .map((c) => ({ ...c, items: c.items.filter((i) => i.toLowerCase().includes(query.toLowerCase())) }))
         .filter((c) => c.items.length || c.name.toLowerCase().includes(query.toLowerCase()))
     : SERVICE_CATS;
+
+  useEffect(() => {
+    if (!selectedCategory || query.trim()) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById(`service-${selectedCategory}`)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [query, selectedCategory]);
 
   return (
     <div>
@@ -34,9 +49,10 @@ export default function Services() {
       </section>
 
       {/* Search */}
-      <section style={{ backgroundColor: "#151515", padding: "28px max(24px, 4vw)" }}>
+      <section style={{ backgroundColor: "#151515", padding: "32px max(24px, 4vw)" }}>
         <div style={{ maxWidth: 560, margin: "0 auto" }}>
           <input
+            className="field-dark"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search — e.g. 'trademark', 'GST', 'SHA'..."
@@ -46,10 +62,20 @@ export default function Services() {
       </section>
 
       {/* Service categories */}
-      <section style={{ backgroundColor: "#0C0C0C", padding: "128px max(24px, 4vw)" }}>
+      <section style={{ backgroundColor: "#0C0C0C", padding: "104px max(24px, 4vw)" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           {filtered.map((cat) => (
-            <div key={cat.id} style={{ marginBottom: 64 }}>
+            <div
+              id={`service-${cat.id}`}
+              key={cat.id}
+              style={{
+                marginBottom: 64,
+                scrollMarginTop: 128,
+                borderLeft: selectedCategory === cat.id ? "1px solid rgba(196,162,101,0.3)" : "1px solid transparent",
+                paddingLeft: selectedCategory === cat.id ? 24 : 0,
+                transition: "padding-left 0.25s ease, border-color 0.25s ease",
+              }}
+            >
               <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, color: "#F0EDE8", fontWeight: 400, marginBottom: 8 }}>{cat.name}</h2>
               {cat.id === "tax" && cat.desc && (
                 <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#666666", lineHeight: 1.6, marginBottom: 16, maxWidth: 600, fontWeight: 300 }}>
@@ -134,7 +160,7 @@ export default function Services() {
         <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#666666", marginBottom: 32, fontWeight: 300 }}>
           Scope, timeline, and fees within 24 hours.
         </p>
-        <Link to="/contact" style={{ display: "inline-block", backgroundColor: "#C4A265", color: "#503804", padding: "14px 36px", textTransform: "uppercase", fontSize: 11, letterSpacing: "0.15em", textDecoration: "none", fontWeight: 500, fontFamily: "'DM Sans',sans-serif" }}>
+        <Link className="interactive-solid" to="/contact" style={{ display: "inline-block", backgroundColor: "#C4A265", color: "#503804", padding: "14px 36px", textTransform: "uppercase", fontSize: 11, letterSpacing: "0.15em", textDecoration: "none", fontWeight: 500, fontFamily: "'DM Sans',sans-serif" }}>
           Get a Quote
         </Link>
       </section>
