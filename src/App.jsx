@@ -13,6 +13,7 @@ import People from "./pages/People";
 import Insights from "./pages/Insights";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import LegalPage from "./pages/LegalPage";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -37,6 +38,9 @@ export default function App() {
           <Route path="/insights" element={<Insights />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy-policy" element={<LegalPage kind="privacy" />} />
+          <Route path="/terms-of-service" element={<LegalPage kind="terms" />} />
+          <Route path="/disclaimer" element={<LegalPage kind="disclaimer" />} />
         </Routes>
       </main>
       <Footer />
