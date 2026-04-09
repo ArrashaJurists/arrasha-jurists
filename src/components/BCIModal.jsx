@@ -47,7 +47,7 @@ export default function BCIModal() {
         {/* Action button */}
         <button
           onClick={handleAccept}
-          className="w-full bg-gold hover:bg-[#B39154] text-[#503804] py-4 px-8 text-[12px] font-medium tracking-[0.2em] uppercase transition-colors duration-300 font-body"
+          className="interactive-solid w-full bg-gold hover:bg-[#B39154] text-[#503804] py-4 px-8 text-[12px] font-medium tracking-[0.2em] uppercase transition-colors duration-300 font-body"
         >
           I Understand & Agree
         </button>

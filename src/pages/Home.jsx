@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Label, SectionTitle, Card } from "../components/ui";
@@ -7,6 +8,18 @@ import {
 } from "../data";
 
 export default function Home() {
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+
+  const handleNewsletterSubmit = (e) => {
+    e.preventDefault();
+    const email = newsletterEmail.trim();
+    if (!email) return;
+
+    const subject = "Newsletter subscription request";
+    const body = `Please add this email to the Arrasha Jurists updates list:%0D%0A%0D%0A${encodeURIComponent(email)}`;
+    window.location.href = `mailto:contact@arrashajurists.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+  };
+
   return (
     <div>
       <Helmet>
@@ -28,7 +41,7 @@ export default function Home() {
             A multidisciplinary legal practice dedicated to precision, integrity, and the defence of corporate excellence across the Indian subcontinent.
           </p>
           <div style={{ marginTop: 64, display: "flex", gap: 32, alignItems: "center", flexWrap: "wrap" }}>
-            <Link to="/services" style={{ border: "1px solid #C4A265", color: "#C4A265", padding: "20px 48px", textTransform: "uppercase", fontSize: 12, letterSpacing: "0.15em", textDecoration: "none", transition: "all 0.3s" }}>
+            <Link className="interactive-outline" to="/services" style={{ border: "1px solid #C4A265", color: "#C4A265", padding: "20px 48px", textTransform: "uppercase", fontSize: 12, letterSpacing: "0.15em", textDecoration: "none", transition: "all 0.3s" }}>
               Explore Practice Areas
             </Link>
             <div style={{ height: 1, width: 96, backgroundColor: "rgba(196,162,101,0.3)" }} />
@@ -57,7 +70,7 @@ export default function Home() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 340px), 1fr))", gap: 0 }}>
             {REG_TYPES.map((r, i) => (
-              <Link key={i} to="/register" style={{ display: "block", backgroundColor: "#151515", padding: 48, border: "1px solid rgba(196,162,101,0.3)", textDecoration: "none", transition: "all 0.5s" }}>
+              <Link className="interactive-card" key={i} to={`/register?entity=${r.slug}`} style={{ display: "block", backgroundColor: "#151515", padding: 48, border: "1px solid rgba(196,162,101,0.3)", textDecoration: "none", transition: "all 0.5s" }}>
                 <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, color: "#C4A265", fontWeight: 400, marginBottom: 16 }}>{r.title}</h3>
                 <p style={{ color: "#D1C5B5", fontWeight: 300, lineHeight: 1.6, marginBottom: 32, fontSize: 15 }}>{r.desc}</p>
                 <div style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: "0.15em", color: "#F0EDE8", opacity: 0.7 }}>Select Structure →</div>
@@ -102,7 +115,7 @@ export default function Home() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: 0 }}>
             {SERVICE_CATS.map((cat) => (
-              <Link key={cat.id} to="/services" style={{ display: "block", backgroundColor: "#151515", padding: 40, border: "1px solid rgba(196,162,101,0.1)", textDecoration: "none", transition: "all 0.5s" }}>
+              <Link className="interactive-card" key={cat.id} to={`/services?category=${cat.id}`} style={{ display: "block", backgroundColor: "#151515", padding: 40, border: "1px solid rgba(196,162,101,0.1)", textDecoration: "none", transition: "all 0.5s" }}>
                 <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 20, color: "#C4A265", fontWeight: 400, marginBottom: 12 }}>{cat.name}</h3>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                   {cat.items.slice(0, 3).map((it, i) => (
@@ -147,7 +160,7 @@ export default function Home() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: 32 }}>
             {EXPERTISE.map((e) => (
-              <Link key={e.id} to={`/expertise/${e.id}`} style={{ display: "block", padding: 40, border: "1px solid rgba(196,162,101,0.1)", backgroundColor: "#1c1b1b", textDecoration: "none", transition: "all 0.3s" }}>
+              <Link className="interactive-card" key={e.id} to={`/expertise/${e.id}`} style={{ display: "block", padding: 40, border: "1px solid rgba(196,162,101,0.1)", backgroundColor: "#1c1b1b", textDecoration: "none", transition: "all 0.3s" }}>
                 <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, color: "#F0EDE8", fontWeight: 400, marginBottom: 16 }}>{e.title}</h3>
                 <p style={{ fontSize: 14, color: "#D1C5B5", fontWeight: 300, lineHeight: 1.6 }}>{e.desc.slice(0, 130)}...</p>
               </Link>
@@ -179,7 +192,7 @@ export default function Home() {
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <span style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C4A265", display: "block", marginBottom: 24 }}>Latest Thinking</span>
           {INSIGHTS.slice(0, 4).map((ins, i) => (
-            <Link key={i} to="/insights" style={{ display: "block", padding: "16px 0", borderBottom: "1px solid rgba(196,162,101,0.1)", textDecoration: "none", transition: "padding-left 0.3s" }}>
+            <Link className="interactive-row" key={i} to="/insights" style={{ display: "block", padding: "18px 0", borderBottom: "1px solid rgba(196,162,101,0.1)", textDecoration: "none", transition: "padding-left 0.3s" }}>
               <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 4, flexWrap: "wrap" }}>
                 <span style={{ fontSize: 10, letterSpacing: "0.06em", textTransform: "uppercase", color: PILLAR_COLORS[ins.cat] }}>{ins.cat}</span>
                 <span style={{ fontSize: 11, color: "#666" }}>· {ins.date}</span>
@@ -195,10 +208,10 @@ export default function Home() {
         <div style={{ maxWidth: 460, margin: "0 auto", textAlign: "center" }}>
           <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(22px, 2.8vw, 28px)", color: "#F0EDE8", fontWeight: 400, marginBottom: 8 }}>Stay ahead of regulatory change</h2>
           <p style={{ fontSize: 13, color: "#D1C5B5", fontWeight: 300, marginBottom: 20 }}>Concise, actionable analysis. No noise.</p>
-          <div style={{ display: "flex", maxWidth: 360, margin: "0 auto" }}>
-            <input type="email" placeholder="your@email.com" style={{ flex: 1, fontSize: 13, padding: "12px 16px", backgroundColor: "#0C0C0C", border: "1px solid rgba(196,162,101,0.2)", borderRight: "none", color: "#F0EDE8", outline: "none", fontFamily: "'DM Sans',sans-serif" }} />
-            <button style={{ fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", padding: "12px 20px", backgroundColor: "#C4A265", color: "#503804", border: "1px solid #C4A265", cursor: "pointer", fontWeight: 500, fontFamily: "'DM Sans',sans-serif" }}>Subscribe</button>
-          </div>
+          <form onSubmit={handleNewsletterSubmit} style={{ display: "flex", maxWidth: 360, margin: "0 auto" }}>
+            <input className="field-dark" value={newsletterEmail} onChange={(e) => setNewsletterEmail(e.target.value)} type="email" required placeholder="your@email.com" style={{ flex: 1, fontSize: 13, padding: "12px 16px", backgroundColor: "#0C0C0C", border: "1px solid rgba(196,162,101,0.2)", borderRight: "none", color: "#F0EDE8", outline: "none", fontFamily: "'DM Sans',sans-serif" }} />
+            <button type="submit" className="interactive-solid" style={{ fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", padding: "12px 20px", backgroundColor: "#C4A265", color: "#503804", border: "1px solid #C4A265", cursor: "pointer", fontWeight: 500, fontFamily: "'DM Sans',sans-serif" }}>Subscribe</button>
+          </form>
         </div>
       </section>
     </div>
