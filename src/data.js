@@ -254,14 +254,14 @@ export const TEAM = [
 ];
 
 export const INSIGHTS = [
-  { cat: "The Privacy Pulse", title: "Beyond Consent: Building Trust Architecture in India's Data Economy", date: "4 Mar 2026", time: "6 min" },
-  { cat: "Regulatory Radar", title: "New Labour Codes 2026: What Changes for Your Workforce This Quarter", date: "1 Mar 2026", time: "4 min" },
-  { cat: "Growth Guide", title: "Pvt Ltd vs LLP vs OPC: Choosing the Right Structure in 2026", date: "25 Feb 2026", time: "5 min" },
-  { cat: "Deal Intelligence", title: "Q4 2025 India M&A Review: What the Numbers Tell Us About 2026", date: "22 Feb 2026", time: "8 min" },
-  { cat: "The Privacy Pulse", title: "Cross-Border Data Transfers: A Practical Roadmap for Indian Businesses", date: "15 Feb 2026", time: "7 min" },
-  { cat: "Regulatory Radar", title: "GST Council Updates: Key Decisions from the 65th Meeting", date: "10 Feb 2026", time: "3 min" },
-  { cat: "Growth Guide", title: "Annual Compliance Calendar 2026: Every Filing Deadline Your Company Needs", date: "5 Feb 2026", time: "4 min" },
-  { cat: "The Privacy Pulse", title: "The Board's Role in Data Governance: Beyond Checkbox Compliance", date: "27 Jan 2026", time: "5 min" },
+  { slug: "beyond-consent-trust-architecture", cat: "The Privacy Pulse", title: "Beyond Consent: Building Trust Architecture in India's Data Economy", date: "4 Mar 2026", time: "6 min" },
+  { slug: "new-labour-codes-2026", cat: "Regulatory Radar", title: "New Labour Codes 2026: What Changes for Your Workforce This Quarter", date: "1 Mar 2026", time: "4 min" },
+  { slug: "pvt-ltd-vs-llp-vs-opc-2026", cat: "Growth Guide", title: "Pvt Ltd vs LLP vs OPC: Choosing the Right Structure in 2026", date: "25 Feb 2026", time: "5 min" },
+  { slug: "q4-2025-india-ma-review", cat: "Deal Intelligence", title: "Q4 2025 India M&A Review: What the Numbers Tell Us About 2026", date: "22 Feb 2026", time: "8 min" },
+  { slug: "cross-border-data-transfers-roadmap", cat: "The Privacy Pulse", title: "Cross-Border Data Transfers: A Practical Roadmap for Indian Businesses", date: "15 Feb 2026", time: "7 min" },
+  { slug: "gst-council-65th-meeting", cat: "Regulatory Radar", title: "GST Council Updates: Key Decisions from the 65th Meeting", date: "10 Feb 2026", time: "3 min" },
+  { slug: "annual-compliance-calendar-2026", cat: "Growth Guide", title: "Annual Compliance Calendar 2026: Every Filing Deadline Your Company Needs", date: "5 Feb 2026", time: "4 min" },
+  { slug: "boards-role-in-data-governance", cat: "The Privacy Pulse", title: "The Board's Role in Data Governance: Beyond Checkbox Compliance", date: "27 Jan 2026", time: "5 min" },
 ];
 
 export const PILLAR_COLORS = {
