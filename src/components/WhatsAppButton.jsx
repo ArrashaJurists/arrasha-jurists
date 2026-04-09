@@ -1,9 +1,5 @@
 export default function WhatsAppButton() {
-  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER?.replace(/\D/g, "");
-
-  if (!whatsappNumber) {
-    return null;
-  }
+  const whatsappNumber = (import.meta.env.VITE_WHATSAPP_NUMBER || "+918839170820").replace(/\D/g, "");
 
   return (
     <a
