@@ -6,9 +6,11 @@
   --color-card: #151515;
   --color-card-hover: #1A1A1A;
   --color-border: #232323;
+  --color-border-strong: rgba(196, 162, 101, 0.14);
   --color-gold: #C4A265;
   --color-gold-light: #D4B87A;
   --color-gold-faint: rgba(196, 162, 101, 0.07);
+  --color-gold-glow: rgba(196, 162, 101, 0.18);
   --color-cream: #F0EDE8;
   --color-mid: #666666;
   --color-light: #999999;
@@ -32,12 +34,37 @@ html {
 }
 
 body {
-  background: var(--color-primary);
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(196, 162, 101, 0.12), transparent 26%),
+    radial-gradient(circle at 82% 16%, rgba(196, 162, 101, 0.1), transparent 20%),
+    linear-gradient(180deg, #121212 0%, #0C0C0C 48%, #090909 100%);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: var(--font-body);
   color: var(--color-cream);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+  background-size: 120px 120px;
+  opacity: 0.22;
+  mask-image: radial-gradient(circle at center, black 24%, transparent 90%);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
 }
 
 ::selection {
@@ -52,6 +79,27 @@ textarea::placeholder {
 
 input, textarea, button {
   font-family: inherit;
+}
+
+button,
+a,
+input,
+textarea {
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgba(196, 162, 101, 0.7);
+  outline-offset: 3px;
 }
 
 .reveal {
@@ -85,4 +133,72 @@ input, textarea, button {
   );
   background-size: 30px 30px;
   opacity: 0.012;
+}
+
+.soft-panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01)),
+    rgba(21, 21, 21, 0.94);
+  border: 1px solid rgba(196, 162, 101, 0.1);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.section-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.section-shell::after {
+  content: "";
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(196, 162, 101, 0.14), transparent);
+}
+
+.section-shell.no-divider::after {
+  display: none;
+}
+
+.hero-orb {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(196, 162, 101, 0.18) 0%, rgba(196, 162, 101, 0.04) 34%, transparent 68%);
+  filter: blur(18px);
+  pointer-events: none;
+}
+
+.balance {
+  text-wrap: balance;
+}
+
+.text-shadow-soft {
+  text-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal,
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
 }
