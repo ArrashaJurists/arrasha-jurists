@@ -22,9 +22,9 @@ export default function Footer() {
         <h5 className="text-[12px] font-medium uppercase tracking-widest text-gold mb-6 md:mb-8 font-body">Practice</h5>
         <ul className="flex flex-col gap-4">
           <li><Link to="/register" className={linkClass}>Company Registration</Link></li>
-          <li><Link to="/services" className={linkClass}>Tax & Accounting</Link></li>
-          <li><Link to="/services" className={linkClass}>GST Services</Link></li>
-          <li><Link to="/services" className={linkClass}>Intellectual Property</Link></li>
+          <li><Link to="/services?category=tax" className={linkClass}>Tax & Accounting</Link></li>
+          <li><Link to="/services?category=gst" className={linkClass}>GST Services</Link></li>
+          <li><Link to="/services?category=ip" className={linkClass}>Intellectual Property</Link></li>
         </ul>
       </div>
 
@@ -44,9 +44,9 @@ export default function Footer() {
         <h5 className="text-[12px] font-medium uppercase tracking-widest text-gold mb-6 md:mb-8 font-body">Legal</h5>
         <ul className="flex flex-col gap-4">
           <li><Link to="/contact" className={linkClass}>Contact</Link></li>
-          <li><span className={linkClass}>Privacy Policy</span></li>
-          <li><span className={linkClass}>Terms of Service</span></li>
-          <li><span className={linkClass}>Disclaimer</span></li>
+          <li><Link to="/privacy-policy" className={linkClass}>Privacy Policy</Link></li>
+          <li><Link to="/terms-of-service" className={linkClass}>Terms of Service</Link></li>
+          <li><Link to="/disclaimer" className={linkClass}>Disclaimer</Link></li>
         </ul>
       </div>
 
