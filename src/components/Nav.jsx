@@ -73,7 +73,7 @@ export default function Nav() {
                 <div className="flex-1 border-r border-gold/10 px-6">
                   <div className={dropdownLabelClass}>Company Registration</div>
                   {REG_TYPES.slice(0, 4).map((r, i) => (
-                    <Link key={i} to="/register" className={dropdownItemClass}>
+                    <Link key={i} to={registerLinkFor(r.slug)} className={dropdownItemClass}>
                       {r.title}
                     </Link>
                   ))}
@@ -81,7 +81,7 @@ export default function Nav() {
                 <div className="flex-1 px-6">
                   <div className={dropdownLabelClass}>Compliance & Filing</div>
                   {SERVICE_CATS.slice(0, 5).map((c) => (
-                    <Link key={c.id} to="/services" className={dropdownItemClass}>
+                    <Link key={c.id} to={serviceLinkFor(c.id)} className={dropdownItemClass}>
                       {c.name}
                     </Link>
                   ))}
@@ -225,3 +225,5 @@ export default function Nav() {
     </nav>
   );
 }
+  const registerLinkFor = (slug) => `/register?entity=${slug}`;
+  const serviceLinkFor = (categoryId) => `/services?category=${categoryId}`;
