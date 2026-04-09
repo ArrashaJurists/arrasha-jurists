@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" width="600" height="200">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&amp;family=DM+Sans:wght@300;400&amp;display=swap');
+    </style>
+  </defs>
+  <!-- Background -->
+  <rect width="600" height="200" fill="#0C0C0C"/>
+
+  <!-- Gold accent line left of wordmark -->
+  <line x1="60" y1="65" x2="60" y2="135" stroke="#C4A265" stroke-width="1.5"/>
+
+  <!-- Primary wordmark -->
+  <text x="80" y="100" font-family="'Cormorant Garamond', serif" font-size="42" letter-spacing="0.06em" fill="#F0EDE8" font-weight="400">Arrasha</text>
+  <text x="80" y="100" font-family="'Cormorant Garamond', serif" font-size="42" letter-spacing="0.06em" fill="#F0EDE8" font-weight="400" opacity="0">Arrasha</text>
+
+  <!-- "Jurists" in gold, positioned after "Arrasha" -->
+  <text x="290" y="100" font-family="'Cormorant Garamond', serif" font-size="42" letter-spacing="0.06em" fill="#C4A265" font-weight="400">Jurists</text>
+
+  <!-- Thin gold divider -->
+  <line x1="80" y1="115" x2="420" y2="115" stroke="#C4A265" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- "LLP" designation -->
+  <text x="80" y="135" font-family="'DM Sans', sans-serif" font-size="10" letter-spacing="0.3em" fill="#666666" font-weight="300">LLP</text>
+
+  <!-- Tagline -->
+  <text x="420" y="135" text-anchor="end" font-family="'DM Sans', sans-serif" font-size="9" letter-spacing="0.15em" fill="#999999" font-weight="300" text-transform="uppercase">STRATEGIC LEGAL COUNSEL</text>
+</svg>

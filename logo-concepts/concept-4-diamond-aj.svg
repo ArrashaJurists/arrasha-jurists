@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&amp;family=DM+Sans:wght@300;400&amp;display=swap');
+    </style>
+  </defs>
+  <!-- Background -->
+  <rect width="400" height="400" fill="#0C0C0C"/>
+
+  <!-- Outer diamond (rotated square) -->
+  <rect x="145" y="145" width="110" height="110" fill="none" stroke="#C4A265" stroke-width="1.5" transform="rotate(45 200 200)"/>
+
+  <!-- Inner diamond (smaller, subtle) -->
+  <rect x="165" y="165" width="70" height="70" fill="none" stroke="#C4A265" stroke-width="0.5" transform="rotate(45 200 200)" opacity="0.3"/>
+
+  <!-- "AJ" monogram inside diamond -->
+  <!-- A -->
+  <text x="185" y="210" font-family="'Cormorant Garamond', serif" font-size="40" fill="#F0EDE8" font-weight="400" letter-spacing="-0.02em">A</text>
+  <!-- J in gold -->
+  <text x="207" y="210" font-family="'Cormorant Garamond', serif" font-size="40" fill="#C4A265" font-weight="400" letter-spacing="-0.02em">J</text>
+
+  <!-- Gold divider -->
+  <line x1="165" y1="268" x2="235" y2="268" stroke="#C4A265" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Wordmark below -->
+  <text x="200" y="295" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="18" letter-spacing="0.15em" fill="#F0EDE8" font-weight="400">ARRASHA</text>
+  <text x="200" y="318" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="18" letter-spacing="0.15em" fill="#C4A265" font-weight="400">JURISTS</text>
+  <text x="200" y="338" text-anchor="middle" font-family="'DM Sans', sans-serif" font-size="8" letter-spacing="0.35em" fill="#666666" font-weight="300">LLP</text>
+</svg>
