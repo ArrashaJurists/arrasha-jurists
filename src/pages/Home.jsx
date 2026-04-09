@@ -192,7 +192,7 @@ export default function Home() {
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <span style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C4A265", display: "block", marginBottom: 24 }}>Latest Thinking</span>
           {INSIGHTS.slice(0, 4).map((ins, i) => (
-            <Link className="interactive-row" key={i} to="/insights" style={{ display: "block", padding: "18px 0", borderBottom: "1px solid rgba(196,162,101,0.1)", textDecoration: "none", transition: "padding-left 0.3s" }}>
+            <Link className="interactive-row" key={i} to={`/insights?item=${ins.slug}`} style={{ display: "block", padding: "18px 0", borderBottom: "1px solid rgba(196,162,101,0.1)", textDecoration: "none", transition: "padding-left 0.3s" }}>
               <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 4, flexWrap: "wrap" }}>
                 <span style={{ fontSize: 10, letterSpacing: "0.06em", textTransform: "uppercase", color: PILLAR_COLORS[ins.cat] }}>{ins.cat}</span>
                 <span style={{ fontSize: 11, color: "#666" }}>· {ins.date}</span>

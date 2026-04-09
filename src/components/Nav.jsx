@@ -38,6 +38,8 @@ export default function Nav() {
     "mb-4 font-body text-[10px] tracking-[0.16em] uppercase text-gold/90";
   const dropdownItemClass =
     "block py-1.5 font-body text-[13px] leading-[1.45] text-cream/78 transition-colors hover:text-gold";
+  const registerLinkFor = (slug) => `/register?entity=${slug}`;
+  const serviceLinkFor = (categoryId) => `/services?category=${categoryId}`;
 
   return (
     <nav
@@ -59,7 +61,8 @@ export default function Nav() {
             onMouseEnter={() => setDropdown("services")}
             onMouseLeave={() => setDropdown(null)}
           >
-            <button
+            <Link
+              to="/services"
               className={`flex h-[72px] items-center whitespace-nowrap font-body text-[11px] lg:text-[12px] font-medium tracking-[0.1em] uppercase transition-colors ${
                 location.pathname === "/services" || location.pathname === "/register"
                   ? "text-gold"
@@ -67,7 +70,7 @@ export default function Nav() {
               }`}
             >
               Practice Areas
-            </button>
+            </Link>
             {dropdown === "services" && (
               <div className="absolute left-[-18px] top-[calc(100%+18px)] z-20 flex min-w-[560px] border border-gold/15 bg-[#111111]/98 py-5 shadow-[0_18px_40px_rgba(0,0,0,0.48)] backdrop-blur-[10px]">
                 <div className="flex-1 border-r border-gold/10 px-6">
@@ -95,7 +98,8 @@ export default function Nav() {
             onMouseEnter={() => setDropdown("expertise")}
             onMouseLeave={() => setDropdown(null)}
           >
-            <button
+            <Link
+              to="/expertise"
               className={`flex h-[72px] items-center whitespace-nowrap font-body text-[11px] lg:text-[12px] font-medium tracking-[0.1em] uppercase transition-colors ${
                 location.pathname.startsWith("/expertise") ||
                 location.pathname === "/dpdp-navigator"
@@ -104,7 +108,7 @@ export default function Nav() {
               }`}
             >
               Expertise
-            </button>
+            </Link>
             {dropdown === "expertise" && (
               <div className="absolute left-[-18px] top-[calc(100%+18px)] z-20 min-w-[320px] border border-gold/15 bg-[#111111]/98 py-5 shadow-[0_18px_40px_rgba(0,0,0,0.48)] backdrop-blur-[10px]">
                 {EXPERTISE.map((e) => (
@@ -225,5 +229,3 @@ export default function Nav() {
     </nav>
   );
 }
-  const registerLinkFor = (slug) => `/register?entity=${slug}`;
-  const serviceLinkFor = (categoryId) => `/services?category=${categoryId}`;
