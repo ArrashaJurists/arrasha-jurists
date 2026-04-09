@@ -1,5 +1,25 @@
+import { useEffect, useState } from "react";
+
 export default function WhatsAppButton() {
   const whatsappNumber = (import.meta.env.VITE_WHATSAPP_NUMBER || "+918839170820").replace(/\D/g, "");
+  const [footerVisible, setFooterVisible] = useState(false);
+
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+    if (!footer) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setFooterVisible(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
+  if (footerVisible) {
+    return null;
+  }
 
   return (
     <a
