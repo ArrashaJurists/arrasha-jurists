@@ -1,8 +1,25 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { REG_TYPES_EXTENDED, REGISTRATION_INCLUDES } from "../data";
 
 export default function Register() {
+  const [searchParams] = useSearchParams();
+  const selectedEntity = searchParams.get("entity");
+
+  useEffect(() => {
+    if (!selectedEntity) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById(`entity-${selectedEntity}`)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [selectedEntity]);
+
   return (
     <div>
       <Helmet>
@@ -35,7 +52,17 @@ export default function Register() {
           <div style={{ width: 96, height: 1, backgroundColor: "#C4A265", marginBottom: 48 }} />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 0 }}>
             {REG_TYPES_EXTENDED.map((r, i) => (
-              <div key={i} style={{ backgroundColor: "#151515", padding: 32, border: "1px solid rgba(196,162,101,0.3)" }}>
+              <div
+                id={`entity-${r.slug}`}
+                key={i}
+                style={{
+                  backgroundColor: selectedEntity === r.slug ? "rgba(196,162,101,0.05)" : "#151515",
+                  padding: 32,
+                  border: selectedEntity === r.slug ? "1px solid rgba(196,162,101,0.42)" : "1px solid rgba(196,162,101,0.3)",
+                  scrollMarginTop: 128,
+                  transition: "background-color 0.25s ease, border-color 0.25s ease",
+                }}
+              >
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10, gap: 10 }}>
                   <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 21, color: "#F0EDE8", fontWeight: 400, lineHeight: 1.3 }}>{r.title}</h3>
                   <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, letterSpacing: "0.06em", textTransform: "uppercase", color: "#C4A265", backgroundColor: "rgba(196,162,101,0.07)", padding: "2px 8px", flexShrink: 0 }}>
@@ -104,7 +131,7 @@ export default function Register() {
         <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#666666", marginBottom: 32, fontWeight: 300 }}>
           Tell us your requirements — we'll respond with entity recommendation, scope, and fees within 24 hours.
         </p>
-        <Link to="/contact" style={{ display: "inline-block", backgroundColor: "#C4A265", color: "#503804", padding: "14px 36px", textTransform: "uppercase", fontSize: 11, letterSpacing: "0.15em", textDecoration: "none", fontWeight: 500, fontFamily: "'DM Sans',sans-serif" }}>
+        <Link className="interactive-solid" to="/contact" style={{ display: "inline-block", backgroundColor: "#C4A265", color: "#503804", padding: "14px 36px", textTransform: "uppercase", fontSize: 11, letterSpacing: "0.15em", textDecoration: "none", fontWeight: 500, fontFamily: "'DM Sans',sans-serif" }}>
           Get Started
         </Link>
       </section>
