@@ -1,60 +1,81 @@
 import { Link } from "react-router-dom";
 import { BRAND_FULL } from "../data";
 
-export default function Footer() {
-  const linkClass = "text-cream/70 hover:text-gold transition-colors text-sm font-light";
+const PRACTICE_LINKS = [
+  { label: "Company Registration", to: "/register" },
+  { label: "Tax & Accounting", to: "/services?category=tax" },
+  { label: "GST Services", to: "/services?category=gst" },
+  { label: "Intellectual Property", to: "/services?category=ip" },
+];
 
+const FIRM_LINKS = [
+  { label: "About Us", to: "/about" },
+  { label: "Our Jurists", to: "/people" },
+  { label: "Insights", to: "/insights" },
+  { label: "DPDP Navigator", to: "/dpdp-navigator" },
+];
+
+const LEGAL_LINKS = [
+  { label: "Contact", to: "/contact" },
+  { label: "Privacy Policy", to: "/privacy-policy" },
+  { label: "Terms of Service", to: "/terms-of-service" },
+  { label: "Disclaimer", to: "/disclaimer" },
+];
+
+function FooterColumn({ title, links }) {
   return (
-    <footer className="w-full px-6 md:px-12 py-16 md:py-24 grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 border-t border-gold bg-[#151515]">
-      {/* Brand */}
-      <div>
-        <div className="text-xl md:text-2xl font-normal text-cream font-heading mb-6 md:mb-8">ARRASHA JURISTS LLP</div>
-        <p className="text-[12px] font-medium uppercase tracking-widest text-gold mb-4 font-body">Headquarters</p>
-        <p className="text-cream/70 font-light text-sm leading-relaxed">
-          Delhi NCR<br />
-          Mumbai<br />
-          Bengaluru
-        </p>
-      </div>
+    <div>
+      <h5 className="mb-5 font-body text-[10.5px] font-medium uppercase tracking-[0.22em] text-gold">
+        {title}
+      </h5>
+      <ul className="space-y-3.5">
+        {links.map((link) => (
+          <li key={link.label}>
+            <Link
+              to={link.to}
+              className="inline-flex text-[13px] leading-[1.55] text-cream/68 transition-colors duration-300 hover:text-cream"
+            >
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
-      {/* Practice */}
-      <div>
-        <h5 className="text-[12px] font-medium uppercase tracking-widest text-gold mb-6 md:mb-8 font-body">Practice</h5>
-        <ul className="flex flex-col gap-4">
-          <li><Link to="/register" className={linkClass}>Company Registration</Link></li>
-          <li><Link to="/services?category=tax" className={linkClass}>Tax & Accounting</Link></li>
-          <li><Link to="/services?category=gst" className={linkClass}>GST Services</Link></li>
-          <li><Link to="/services?category=ip" className={linkClass}>Intellectual Property</Link></li>
-        </ul>
-      </div>
+export default function Footer() {
+  return (
+    <footer className="border-t border-gold/35 bg-[#151515]">
+      <div className="mx-auto max-w-[1240px] px-6 py-14 md:px-10 md:py-16 xl:px-12">
+        <div className="grid grid-cols-1 gap-y-12 md:grid-cols-[minmax(320px,1.18fr)_repeat(3,minmax(145px,0.7fr))] md:gap-x-8 lg:gap-x-14">
+          <div className="max-w-[360px]">
+            <div className="font-heading text-[28px] leading-[0.92] tracking-[0.02em] text-cream md:text-[30px]">
+              ARRASHA JURISTS LLP
+            </div>
+            <div className="mt-5 font-body text-[10.5px] font-medium uppercase tracking-[0.22em] text-gold">
+              Headquarters
+            </div>
+            <div className="mt-3 space-y-1.5 font-body text-[13px] leading-[1.6] text-cream/68">
+              <p>Delhi NCR</p>
+              <p>Mumbai</p>
+              <p>Bengaluru</p>
+            </div>
+          </div>
 
-      {/* The Firm */}
-      <div>
-        <h5 className="text-[12px] font-medium uppercase tracking-widest text-gold mb-6 md:mb-8 font-body">The Firm</h5>
-        <ul className="flex flex-col gap-4">
-          <li><Link to="/about" className={linkClass}>About Us</Link></li>
-          <li><Link to="/people" className={linkClass}>Our Jurists</Link></li>
-          <li><Link to="/insights" className={linkClass}>Insights</Link></li>
-          <li><Link to="/dpdp-navigator" className={linkClass}>DPDP Navigator</Link></li>
-        </ul>
-      </div>
+          <FooterColumn title="Practice" links={PRACTICE_LINKS} />
+          <FooterColumn title="The Firm" links={FIRM_LINKS} />
+          <FooterColumn title="Legal" links={LEGAL_LINKS} />
+        </div>
 
-      {/* Legal */}
-      <div>
-        <h5 className="text-[12px] font-medium uppercase tracking-widest text-gold mb-6 md:mb-8 font-body">Legal</h5>
-        <ul className="flex flex-col gap-4">
-          <li><Link to="/contact" className={linkClass}>Contact</Link></li>
-          <li><Link to="/privacy-policy" className={linkClass}>Privacy Policy</Link></li>
-          <li><Link to="/terms-of-service" className={linkClass}>Terms of Service</Link></li>
-          <li><Link to="/disclaimer" className={linkClass}>Disclaimer</Link></li>
-        </ul>
-      </div>
-
-      {/* Bottom bar */}
-      <div className="col-span-full mt-12 md:mt-24 flex flex-col md:flex-row justify-between items-center border-t border-gold/10 pt-8 md:pt-12">
-        <p className="text-[10px] uppercase tracking-widest text-cream/40 font-body">
-          &copy; 2026 {BRAND_FULL}. All Rights Reserved.
-        </p>
+        <div className="mt-12 flex flex-col gap-3 border-t border-gold/10 pt-5 md:mt-14 md:flex-row md:items-center md:justify-between">
+          <p className="font-body text-[10px] uppercase tracking-[0.16em] text-cream/40">
+            &copy; 2026 {BRAND_FULL}. All Rights Reserved.
+          </p>
+          <p className="font-body text-[10px] uppercase tracking-[0.16em] text-cream/30">
+            Informational Website Only
+          </p>
+        </div>
       </div>
     </footer>
   );
