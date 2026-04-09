@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { BrandText } from "./ui";
 import { REG_TYPES, SERVICE_CATS, EXPERTISE } from "../data";
 
 export default function Nav() {
@@ -23,8 +22,8 @@ export default function Nav() {
   const navLink = (label, to) => (
     <Link
       to={to}
-      className={`font-body text-[11px] tracking-[0.1em] uppercase transition-colors duration-300 py-2 ${
-        location.pathname === to ? "text-gold" : "text-light hover:text-gold"
+      className={`font-body text-[12px] font-medium tracking-[0.1em] uppercase transition-colors duration-300 ${
+        location.pathname === to ? "text-gold" : "text-cream hover:text-gold"
       }`}
     >
       {label}
@@ -33,139 +32,117 @@ export default function Nav() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-400 ${
-        scrolled ? "bg-primary/95 backdrop-blur-[10px] border-b border-gold/5" : "border-b border-transparent"
+      className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-400 border-b border-gold ${
+        scrolled ? "bg-[#0C0C0C]/95 backdrop-blur-[10px]" : "bg-[#0C0C0C]"
       }`}
     >
-      <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-[62px]">
-        <Link to="/"><BrandText size="text-[19px]" /></Link>
+      <div className="max-w-full mx-auto px-6 md:px-12 flex items-center justify-between h-[72px]">
+        <Link to="/" className="text-xl font-normal tracking-tight text-cream font-heading">
+          ARRASHA JURISTS LLP
+        </Link>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex gap-5 items-center">
-          {/* Services dropdown */}
+        <div className="hidden md:flex items-center gap-8 lg:gap-12">
           <div
             className="relative"
             onMouseEnter={() => setDropdown("services")}
             onMouseLeave={() => setDropdown(null)}
           >
             <button
-              className={`font-body text-[11px] tracking-[0.1em] uppercase py-2 transition-colors ${
+              className={`font-body text-[12px] font-medium tracking-[0.1em] uppercase transition-colors ${
                 location.pathname === "/services" || location.pathname === "/register"
-                  ? "text-gold" : "text-light hover:text-gold"
+                  ? "text-gold" : "text-cream hover:text-gold"
               }`}
             >
-              Services
+              Practice Areas
             </button>
             {dropdown === "services" && (
-              <div className="absolute top-full left-[-20px] bg-card border border-gold/8 py-3.5 min-w-[520px] flex">
-                <div className="flex-1 px-6 border-r border-gold/4">
-                  <div className="font-body text-[9px] tracking-[0.14em] uppercase text-gold mb-2.5">
-                    Company Registration
-                  </div>
+              <div className="absolute top-full left-[-20px] bg-[#151515] border border-gold/20 py-4 min-w-[520px] flex">
+                <div className="flex-1 px-6 border-r border-gold/10">
+                  <div className="font-body text-[10px] tracking-[0.15em] uppercase text-gold mb-3">Company Registration</div>
                   {REG_TYPES.slice(0, 4).map((r, i) => (
-                    <Link
-                      key={i}
-                      to="/register"
-                      className="block font-body text-[12px] text-light hover:text-gold py-1.5 transition-colors"
-                    >
-                      {r.title}
-                    </Link>
+                    <Link key={i} to="/register" className="block font-body text-[13px] text-cream/70 hover:text-gold py-1.5 transition-colors">{r.title}</Link>
                   ))}
                 </div>
                 <div className="flex-1 px-6">
-                  <div className="font-body text-[9px] tracking-[0.14em] uppercase text-gold mb-2.5">
-                    Compliance & Filing
-                  </div>
+                  <div className="font-body text-[10px] tracking-[0.15em] uppercase text-gold mb-3">Compliance & Filing</div>
                   {SERVICE_CATS.slice(0, 5).map((c) => (
-                    <Link
-                      key={c.id}
-                      to="/services"
-                      className="block font-body text-[12px] text-light hover:text-gold py-1.5 transition-colors"
-                    >
-                      {c.name}
-                    </Link>
+                    <Link key={c.id} to="/services" className="block font-body text-[13px] text-cream/70 hover:text-gold py-1.5 transition-colors">{c.name}</Link>
                   ))}
                 </div>
               </div>
             )}
           </div>
 
-          {/* Expertise dropdown */}
           <div
             className="relative"
             onMouseEnter={() => setDropdown("expertise")}
             onMouseLeave={() => setDropdown(null)}
           >
             <button
-              className={`font-body text-[11px] tracking-[0.1em] uppercase py-2 transition-colors ${
+              className={`font-body text-[12px] font-medium tracking-[0.1em] uppercase transition-colors ${
                 location.pathname.startsWith("/expertise") || location.pathname === "/dpdp-navigator"
-                  ? "text-gold" : "text-light hover:text-gold"
+                  ? "text-gold" : "text-cream hover:text-gold"
               }`}
             >
               Expertise
             </button>
             {dropdown === "expertise" && (
-              <div className="absolute top-full left-[-20px] bg-card border border-gold/8 py-3.5 min-w-[280px]">
+              <div className="absolute top-full left-[-20px] bg-[#151515] border border-gold/20 py-4 min-w-[280px]">
                 {EXPERTISE.map((e) => (
-                  <Link
-                    key={e.id}
-                    to={`/expertise/${e.id}`}
-                    className="block font-body text-[12px] text-light hover:text-gold px-6 py-1.5 transition-colors"
-                  >
-                    {e.title}
-                  </Link>
+                  <Link key={e.id} to={`/expertise/${e.id}`} className="block font-body text-[13px] text-cream/70 hover:text-gold px-6 py-1.5 transition-colors">{e.title}</Link>
                 ))}
-                <div className="h-px bg-gold/4 mx-6 my-1.5" />
-                <Link
-                  to="/dpdp-navigator"
-                  className="block font-body text-[12px] text-gold px-6 py-1.5"
-                >
-                  DPDP Navigator →
-                </Link>
+                <div className="h-px bg-gold/10 mx-6 my-2" />
+                <Link to="/dpdp-navigator" className="block font-body text-[13px] text-gold px-6 py-1.5">DPDP Navigator →</Link>
               </div>
             )}
           </div>
 
-          {navLink("People", "/people")}
+          {navLink("Our Jurists", "/people")}
           {navLink("Insights", "/insights")}
-          {navLink("About", "/about")}
-          {navLink("Contact", "/contact")}
+          {navLink("The Firm", "/about")}
+          <Link
+            to="/contact"
+            className={`font-body text-[12px] font-medium tracking-[0.1em] uppercase transition-colors ${
+              location.pathname === "/contact" ? "text-gold border-b border-gold pb-1" : "text-cream hover:text-gold"
+            }`}
+          >
+            Contact
+          </Link>
+
+          <Link
+            to="/contact"
+            className="bg-gold text-[#503804] px-6 lg:px-8 py-2.5 text-[12px] font-medium uppercase tracking-widest hover:opacity-80 transition-all font-body"
+          >
+            Consultation
+          </Link>
         </div>
 
         {/* Mobile hamburger */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden p-1.5"
-          aria-label="Toggle menu"
-        >
+        <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden p-1.5" aria-label="Toggle menu">
           <div className={`w-5 h-0.5 bg-cream mb-[5px] transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-[7px]" : ""}`} />
           <div className={`w-5 h-0.5 bg-cream mb-[5px] transition-opacity ${mobileOpen ? "opacity-0" : ""}`} />
           <div className={`w-5 h-0.5 bg-cream transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-[7px]" : ""}`} />
         </button>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-card px-6 py-4 flex flex-col gap-3 max-h-[70vh] overflow-y-auto">
-          <div className="font-body text-[9px] tracking-[0.14em] uppercase text-gold">Registration</div>
-          <Link to="/register" className="font-body text-[12px] text-cream">Company Registration</Link>
-
-          <div className="font-body text-[9px] tracking-[0.14em] uppercase text-gold mt-1">Services</div>
-          <Link to="/services" className="font-body text-[12px] text-light">All Services</Link>
-
-          <div className="font-body text-[9px] tracking-[0.14em] uppercase text-gold mt-1">Expertise</div>
+        <div className="md:hidden bg-[#151515] px-6 py-5 flex flex-col gap-3 max-h-[70vh] overflow-y-auto border-t border-gold/20">
+          <div className="font-body text-[10px] tracking-[0.15em] uppercase text-gold">Registration</div>
+          <Link to="/register" className="font-body text-[13px] text-cream">Company Registration</Link>
+          <div className="font-body text-[10px] tracking-[0.15em] uppercase text-gold mt-2">Services</div>
+          <Link to="/services" className="font-body text-[13px] text-cream/70">All Services</Link>
+          <div className="font-body text-[10px] tracking-[0.15em] uppercase text-gold mt-2">Expertise</div>
           {EXPERTISE.map((e) => (
-            <Link key={e.id} to={`/expertise/${e.id}`} className="font-body text-[12px] text-light">
-              {e.title}
-            </Link>
+            <Link key={e.id} to={`/expertise/${e.id}`} className="font-body text-[13px] text-cream/70">{e.title}</Link>
           ))}
-
-          <div className="h-px bg-gold/4 mt-1" />
-          <Link to="/dpdp-navigator" className="font-body text-[12px] text-gold">DPDP Navigator</Link>
-          <Link to="/people" className="font-body text-[12px] text-light">People</Link>
-          <Link to="/insights" className="font-body text-[12px] text-light">Insights</Link>
-          <Link to="/about" className="font-body text-[12px] text-light">About</Link>
-          <Link to="/contact" className="font-body text-[12px] text-light">Contact</Link>
+          <div className="h-px bg-gold/10 mt-2" />
+          <Link to="/dpdp-navigator" className="font-body text-[13px] text-gold">DPDP Navigator</Link>
+          <Link to="/people" className="font-body text-[13px] text-cream/70">Our Jurists</Link>
+          <Link to="/insights" className="font-body text-[13px] text-cream/70">Insights</Link>
+          <Link to="/about" className="font-body text-[13px] text-cream/70">The Firm</Link>
+          <Link to="/contact" className="font-body text-[13px] text-cream/70">Contact</Link>
+          <Link to="/contact" className="mt-3 bg-gold text-[#503804] px-6 py-3 text-[12px] font-medium uppercase tracking-widest text-center font-body">Consultation</Link>
         </div>
       )}
     </nav>
