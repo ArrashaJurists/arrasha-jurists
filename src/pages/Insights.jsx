@@ -37,9 +37,11 @@ export default function Insights() {
       {/* Filter + articles */}
       <section style={{ backgroundColor: "#151515", padding: "128px max(24px, 4vw)" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
-          <div style={{ display: "flex", flexWrap: "wrap", marginBottom: 48 }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 48 }}>
             {CATEGORIES.map((cat) => (
               <button
+                className="filter-chip"
+                data-active={filter === cat}
                 key={cat}
                 onClick={() => setFilter(cat)}
                 style={{
@@ -58,7 +60,7 @@ export default function Insights() {
             ))}
           </div>
           {items.map((ins, i) => (
-            <div key={i} style={{ padding: "16px 0", borderBottom: "1px solid rgba(196,162,101,0.1)", cursor: "pointer", transition: "padding-left 0.3s" }}>
+            <div key={i} style={{ padding: "20px 0", borderBottom: "1px solid rgba(196,162,101,0.1)" }}>
               <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 4, flexWrap: "wrap" }}>
                 <span
                   style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: "0.06em", textTransform: "uppercase", color: PILLAR_COLORS_INLINE[ins.cat] }}

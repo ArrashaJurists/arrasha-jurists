@@ -69,9 +69,10 @@ export default function Contact() {
       {/* Self-segmenting intake */}
       <section style={{ backgroundColor: "#151515", padding: "128px max(24px, 4vw)" }}>
         <div style={{ maxWidth: 700, margin: "0 auto" }}>
-          <div style={{ display: "grid", gap: 2, marginBottom: 48 }}>
+          <div style={{ display: "grid", gap: 8, marginBottom: 48 }}>
             {CONTACT_OPTIONS.map((o, i) => (
               <button
+                className="intake-option"
                 key={i}
                 onClick={() => setSelected(i)}
                 aria-pressed={selected === i}
@@ -118,6 +119,7 @@ export default function Contact() {
                       {label}
                     </label>
                     <input
+                      className="field-dark"
                       name={label.toLowerCase()}
                       required={label === "Name"}
                       style={{ width: "100%", fontFamily: "'DM Sans',sans-serif", fontSize: 13, padding: "10px 12px", backgroundColor: "#151515", border: "1px solid rgba(196,162,101,0.15)", color: "#F0EDE8", outline: "none" }}
@@ -132,6 +134,7 @@ export default function Contact() {
                       {label}
                     </label>
                     <input
+                      className="field-dark"
                       name={label.toLowerCase()}
                       type={type}
                       required={label === "Email"}
@@ -145,6 +148,7 @@ export default function Contact() {
                   How can we help?
                 </label>
                 <textarea
+                  className="field-dark"
                   name="message"
                   rows={3}
                   required
@@ -152,6 +156,7 @@ export default function Contact() {
                 />
               </div>
               <button
+                className="interactive-solid"
                 type="submit"
                 style={{ display: "inline-block", backgroundColor: "#C4A265", color: "#503804", padding: "14px 36px", textTransform: "uppercase", fontSize: 11, letterSpacing: "0.15em", border: "1px solid #C4A265", cursor: "pointer", fontWeight: 500, fontFamily: "'DM Sans',sans-serif" }}
               >
