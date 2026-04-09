@@ -15,23 +15,23 @@ export function Reveal({ children, delay = 0, className = "" }) {
 }
 
 export function Button({ children, to, onClick, outline = false, small = false, className = "" }) {
-  const base = `inline-flex items-center justify-center gap-2 rounded-full font-body uppercase tracking-[0.1em] cursor-pointer transition-all duration-300 border border-gold shadow-[0_12px_30px_rgba(0,0,0,0.22)] ${
+  const base = `inline-block font-body uppercase tracking-[0.1em] cursor-pointer transition-all duration-300 border border-gold ${
     small ? "text-[10.5px] px-5 py-2.5" : "text-[11.5px] px-7 py-3"
   } ${
     outline
-      ? "bg-transparent text-gold hover:bg-gold-faint hover:-translate-y-0.5"
-      : "bg-gold text-primary hover:bg-gold-light hover:-translate-y-0.5"
+      ? "bg-transparent text-gold hover:bg-gold-faint"
+      : "bg-gold text-primary hover:bg-gold-light"
   } ${className}`;
 
   if (to) {
-    return <Link to={to} onClick={onClick} className={base}>{children}</Link>;
+    return <Link to={to} className={base}>{children}</Link>;
   }
   return <button onClick={onClick} className={base}>{children}</button>;
 }
 
 export function Label({ children }) {
   return (
-    <div className="font-body text-[10px] tracking-[0.22em] uppercase text-gold mb-3">
+    <div className="font-body text-[10px] tracking-[0.2em] uppercase text-gold mb-3">
       {children}
     </div>
   );
@@ -39,14 +39,14 @@ export function Label({ children }) {
 
 export function SectionTitle({ children, size = "text-[clamp(24px,3.2vw,36px)]" }) {
   return (
-    <h2 className={`font-heading ${size} text-cream font-normal leading-tight balance`}>
+    <h2 className={`font-heading ${size} text-cream font-normal leading-tight`}>
       {children}
     </h2>
   );
 }
 
 export function Card({ children, onClick, to, className = "" }) {
-  const base = `rounded-[28px] border border-gold/8 bg-card/92 hover:bg-card-hover shadow-[0_20px_60px_rgba(0,0,0,0.24)] transition-all duration-300 hover:-translate-y-1 ${className}`;
+  const base = `bg-card hover:bg-card-hover transition-colors duration-300 ${className}`;
 
   if (to) {
     return <Link to={to} className={`block ${base}`}>{children}</Link>;

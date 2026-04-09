@@ -3,12 +3,10 @@ import { useState, useEffect } from "react";
 const TARGET = new Date("2027-05-31T00:00:00+05:30").getTime();
 
 export default function useCountdown() {
-  const [diff, setDiff] = useState(0);
+  const [diff, setDiff] = useState(TARGET - Date.now());
 
   useEffect(() => {
-    const updateCountdown = () => setDiff(TARGET - Date.now());
-    updateCountdown();
-    const id = setInterval(updateCountdown, 1000);
+    const id = setInterval(() => setDiff(TARGET - Date.now()), 1000);
     return () => clearInterval(id);
   }, []);
 
