@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { Reveal, Button, Label, SectionTitle, GoldDash } from "../components/ui";
 import { SERVICE_CATS, BUNDLES, HOW_IT_WORKS } from "../data";
 
 export default function Services() {
@@ -19,125 +19,124 @@ export default function Services() {
       </Helmet>
 
       {/* Hero */}
-      <section className="min-h-[320px] flex items-end bg-primary pt-[120px] pb-14 px-6">
-        <Reveal>
-          <div className="max-w-[660px]">
-            <Label>Services</Label>
-            <h1 className="font-heading text-[clamp(28px,4vw,40px)] text-cream font-normal leading-[1.2] mb-3">
-              Tax, compliance, IP, licensing, and legal documentation
-            </h1>
-            <p className="font-body text-[14.5px] text-light leading-relaxed max-w-[540px]">
-              Every service handled by qualified professionals. Clear scope, transparent pricing.
-            </p>
-          </div>
-        </Reveal>
+      <section style={{ minHeight: 320, display: "flex", alignItems: "flex-end", backgroundColor: "#0C0C0C", padding: "120px 48px 56px" }}>
+        <div style={{ maxWidth: 660 }}>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C4A265", display: "block", marginBottom: 12 }}>
+            Services
+          </span>
+          <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(28px, 4vw, 40px)", color: "#F0EDE8", fontWeight: 400, lineHeight: 1.2, marginBottom: 12 }}>
+            Tax, compliance, IP, licensing, and legal documentation
+          </h1>
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, color: "#999999", lineHeight: 1.6, maxWidth: 540, fontWeight: 300 }}>
+            Every service handled by qualified professionals. Clear scope, transparent pricing.
+          </p>
+        </div>
       </section>
 
       {/* Search */}
-      <section className="bg-card py-7 px-6">
-        <div className="max-w-[560px] mx-auto">
+      <section style={{ backgroundColor: "#151515", padding: "28px max(24px, 4vw)" }}>
+        <div style={{ maxWidth: 560, margin: "0 auto" }}>
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search — e.g. 'trademark', 'GST', 'SHA'..."
-            className="w-full font-body text-[13.5px] px-4 py-3 bg-primary border border-gold/10 text-cream outline-none"
+            style={{ width: "100%", fontFamily: "'DM Sans',sans-serif", fontSize: 14, padding: "12px 16px", backgroundColor: "#0C0C0C", border: "1px solid rgba(196,162,101,0.15)", color: "#F0EDE8", outline: "none" }}
           />
         </div>
       </section>
 
       {/* Service categories */}
-      <section className="bg-primary py-12 px-6">
-        <div className="max-w-[1100px] mx-auto">
-          {filtered.map((cat, ci) => (
-            <Reveal key={cat.id} delay={ci * 0.03}>
-              <div className="mb-10">
-                <h2 className="font-heading text-[22px] text-cream font-normal mb-2">{cat.name}</h2>
-                {/* Improvement #1: capability paragraph for Tax & Accounting */}
-                {cat.id === "tax" && (
-                  <p className="font-body text-[12.5px] text-mid leading-relaxed mb-4 max-w-[600px]">
-                    {cat.desc}
-                  </p>
-                )}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0.5">
-                  {cat.items.map((it, i) => (
-                    <div key={i} className="bg-card py-4 px-5 flex items-center gap-2">
-                      <span className="text-gold/20 text-[7px]">●</span>
-                      <span className="font-body text-[13px] text-cream">{it}</span>
-                    </div>
-                  ))}
-                </div>
+      <section style={{ backgroundColor: "#0C0C0C", padding: "128px max(24px, 4vw)" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          {filtered.map((cat) => (
+            <div key={cat.id} style={{ marginBottom: 64 }}>
+              <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, color: "#F0EDE8", fontWeight: 400, marginBottom: 8 }}>{cat.name}</h2>
+              {cat.id === "tax" && cat.desc && (
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#666666", lineHeight: 1.6, marginBottom: 16, maxWidth: 600, fontWeight: 300 }}>
+                  {cat.desc}
+                </p>
+              )}
+              <div style={{ width: 64, height: 1, backgroundColor: "#C4A265", marginBottom: 24 }} />
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 0 }}>
+                {cat.items.map((it, i) => (
+                  <div key={i} style={{ backgroundColor: "#151515", padding: "16px 20px", display: "flex", alignItems: "center", gap: 8, border: "1px solid rgba(196,162,101,0.1)" }}>
+                    <span style={{ color: "rgba(196,162,101,0.3)", fontSize: 8 }}>●</span>
+                    <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#F0EDE8", fontWeight: 300 }}>{it}</span>
+                  </div>
+                ))}
               </div>
-            </Reveal>
+            </div>
           ))}
         </div>
       </section>
 
       {/* Service bundles */}
-      <section className="bg-card py-14 px-6 border-t border-gold/3">
-        <div className="max-w-[1100px] mx-auto">
-          <Reveal>
-            <Label>Service Bundles</Label>
-            <SectionTitle size="text-[clamp(20px,2.5vw,28px)]">
-              Common combinations, scoped as one engagement
-            </SectionTitle>
-            <p className="font-body text-[12.5px] text-mid leading-relaxed mt-2 mb-8 max-w-[500px]">
-              Each bundle is priced as a single engagement — simpler for you, more efficient for us.
-            </p>
-          </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0.5">
+      <section style={{ backgroundColor: "#151515", padding: "128px max(24px, 4vw)", borderTop: "1px solid rgba(196,162,101,0.1)" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C4A265", display: "block", marginBottom: 12 }}>
+            Service Bundles
+          </span>
+          <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(20px, 2.5vw, 28px)", color: "#F0EDE8", fontWeight: 400, marginBottom: 8 }}>
+            Common combinations, scoped as one engagement
+          </h2>
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#666666", lineHeight: 1.6, marginBottom: 48, maxWidth: 500, fontWeight: 300 }}>
+            Each bundle is priced as a single engagement — simpler for you, more efficient for us.
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 0 }}>
             {BUNDLES.map((b, i) => (
-              <Reveal key={i} delay={i * 0.04}>
-                <div className="bg-primary p-7">
-                  <h3 className="font-heading text-[18px] text-cream font-normal mb-3">{b.name}</h3>
-                  <div className="flex flex-col gap-2">
-                    {b.items.map((item, j) => (
-                      <div key={j} className="flex gap-2.5 items-start">
-                        <GoldDash />
-                        <span className="font-body text-[12px] text-light leading-normal">{item}</span>
-                      </div>
-                    ))}
-                  </div>
+              <div key={i} style={{ backgroundColor: "#0C0C0C", padding: 28, border: "1px solid rgba(196,162,101,0.3)" }}>
+                <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 20, color: "#F0EDE8", fontWeight: 400, marginBottom: 16 }}>{b.name}</h3>
+                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                  {b.items.map((item, j) => (
+                    <div key={j} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                      <span style={{ color: "#C4A265", flexShrink: 0, marginTop: 2 }}>—</span>
+                      <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#999999", lineHeight: 1.5, fontWeight: 300 }}>{item}</span>
+                    </div>
+                  ))}
                 </div>
-              </Reveal>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* How we work */}
-      <section className="bg-primary py-14 px-6">
-        <div className="max-w-[900px] mx-auto">
-          <Reveal>
-            <div className="text-center mb-10">
-              <Label>How We Work</Label>
-              <SectionTitle size="text-[clamp(20px,2.5vw,28px)]">
-                From enquiry to delivery — handled entirely by us
-              </SectionTitle>
-            </div>
-          </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0.5">
+      <section style={{ backgroundColor: "#0C0C0C", padding: "128px max(24px, 4vw)" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C4A265", display: "block", marginBottom: 12 }}>
+              How We Work
+            </span>
+            <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(20px, 2.5vw, 28px)", color: "#F0EDE8", fontWeight: 400 }}>
+              From enquiry to delivery — handled entirely by us
+            </h2>
+            <div style={{ width: 96, height: 1, backgroundColor: "#C4A265", margin: "16px auto 0" }} />
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 0 }}>
             {HOW_IT_WORKS.map((s) => (
-              <Reveal key={s.step}>
-                <div className="bg-card p-7 text-center">
-                  <div className="w-10 h-10 rounded-full border border-gold/20 flex items-center justify-center mx-auto mb-4">
-                    <span className="font-heading text-xl text-gold">{s.step}</span>
-                  </div>
-                  <h3 className="font-heading text-lg text-cream font-normal mb-1.5">{s.title}</h3>
-                  <p className="font-body text-[12px] text-mid leading-relaxed">{s.desc}</p>
+              <div key={s.step} style={{ backgroundColor: "#151515", padding: 28, textAlign: "center", border: "1px solid rgba(196,162,101,0.3)" }}>
+                <div style={{ width: 40, height: 40, borderRadius: "50%", border: "1px solid rgba(196,162,101,0.3)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
+                  <span style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 20, color: "#C4A265" }}>{s.step}</span>
                 </div>
-              </Reveal>
+                <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 18, color: "#F0EDE8", fontWeight: 400, marginBottom: 6 }}>{s.title}</h3>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#666666", lineHeight: 1.6, fontWeight: 300 }}>{s.desc}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-card py-14 px-6 text-center border-t border-gold/3">
-        <Reveal>
-          <SectionTitle size="text-[clamp(20px,2.5vw,26px)]">Need something specific?</SectionTitle>
-          <p className="font-body text-[12.5px] text-mid mt-2 mb-5">Scope, timeline, and fees within 24 hours.</p>
-          <Button to="/contact">Get a Quote</Button>
-        </Reveal>
+      <section style={{ backgroundColor: "#151515", padding: "128px max(24px, 4vw)", textAlign: "center", borderTop: "1px solid rgba(196,162,101,0.1)" }}>
+        <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(20px, 2.5vw, 26px)", color: "#F0EDE8", fontWeight: 400, marginBottom: 8 }}>
+          Need something specific?
+        </h2>
+        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#666666", marginBottom: 32, fontWeight: 300 }}>
+          Scope, timeline, and fees within 24 hours.
+        </p>
+        <Link to="/contact" style={{ display: "inline-block", backgroundColor: "#C4A265", color: "#503804", padding: "14px 36px", textTransform: "uppercase", fontSize: 11, letterSpacing: "0.15em", textDecoration: "none", fontWeight: 500, fontFamily: "'DM Sans',sans-serif" }}>
+          Get a Quote
+        </Link>
       </section>
     </div>
   );

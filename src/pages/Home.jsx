@@ -14,7 +14,7 @@ export default function Home() {
       </Helmet>
 
       {/* ── 1. HERO ── */}
-      <section style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 48px", position: "relative", overflow: "hidden", backgroundColor: "#0e0e0e" }}>
+      <section style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 max(24px, 4vw)", position: "relative", overflow: "hidden", backgroundColor: "#0e0e0e" }}>
         <div style={{ position: "absolute", right: "-10%", top: "20%", width: 600, height: 600, border: "1px solid rgba(196,162,101,0.1)", transform: "rotate(45deg)", pointerEvents: "none" }} />
         <div style={{ maxWidth: 1100, position: "relative", zIndex: 10 }}>
           <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: "0.3em", textTransform: "uppercase", color: "#C4A265", display: "block", marginBottom: 24 }}>
@@ -37,7 +37,7 @@ export default function Home() {
       </section>
 
       {/* ── 2. CREDENTIALS BAR ── */}
-      <section style={{ backgroundColor: "#151515", padding: "48px", borderTop: "1px solid rgba(196,162,101,0.2)", borderBottom: "1px solid rgba(196,162,101,0.2)" }}>
+      <section style={{ backgroundColor: "#151515", padding: "48px max(24px, 4vw)", borderTop: "1px solid rgba(196,162,101,0.2)", borderBottom: "1px solid rgba(196,162,101,0.2)" }}>
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 32 }}>
           {["In-house Excellence", "Pan-India Presence", "Transparent Protocol", "End-to-end Legal"].map((label, i) => (
             <div key={i} style={{ display: "flex", alignItems: "center", gap: 16 }}>
@@ -49,13 +49,13 @@ export default function Home() {
       </section>
 
       {/* ── 3. ENTITY STRUCTURES ── */}
-      <section style={{ padding: "128px 48px", backgroundColor: "#131313" }}>
+      <section style={{ padding: "128px max(24px, 4vw)", backgroundColor: "#131313" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ marginBottom: 80 }}>
             <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(36px, 4vw, 48px)", color: "#F0EDE8", fontWeight: 400, marginBottom: 16 }}>Entity Structures</h2>
             <div style={{ width: 96, height: 1, backgroundColor: "#C4A265" }} />
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 0 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 340px), 1fr))", gap: 0 }}>
             {REG_TYPES.map((r, i) => (
               <Link key={i} to="/register" style={{ display: "block", backgroundColor: "#151515", padding: 48, border: "1px solid rgba(196,162,101,0.3)", textDecoration: "none", transition: "all 0.5s" }}>
                 <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, color: "#C4A265", fontWeight: 400, marginBottom: 16 }}>{r.title}</h3>
@@ -68,8 +68,8 @@ export default function Home() {
       </section>
 
       {/* ── 4. HOW IT WORKS ── */}
-      <section style={{ padding: "128px 48px", backgroundColor: "#1c1b1b" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: 96, maxWidth: 1200, margin: "0 auto" }}>
+      <section style={{ padding: "128px max(24px, 4vw)", backgroundColor: "#1c1b1b" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 400px), 1fr))", gap: 64, maxWidth: 1200, margin: "0 auto" }}>
           <div>
             <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(36px, 4vw, 48px)", color: "#F0EDE8", fontWeight: 400, marginBottom: 32 }}>Operational Protocol</h2>
             <p style={{ color: "#D1C5B5", maxWidth: 480, lineHeight: 1.6, fontWeight: 300, fontSize: 16 }}>
@@ -93,14 +93,14 @@ export default function Home() {
       </section>
 
       {/* ── 5. OTHER SERVICES ── */}
-      <section style={{ padding: "128px 48px", backgroundColor: "#131313" }}>
+      <section style={{ padding: "128px max(24px, 4vw)", backgroundColor: "#131313" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ marginBottom: 80 }}>
             <span style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C4A265", display: "block", marginBottom: 12 }}>Beyond Registration</span>
             <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(28px, 3vw, 36px)", color: "#F0EDE8", fontWeight: 400, marginBottom: 12 }}>Tax, compliance, IP, licensing, and legal documentation</h2>
             <p style={{ color: "#D1C5B5", fontSize: 15, fontWeight: 300, maxWidth: 520 }}>The same professionals who register your company handle your ongoing compliance.</p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 0 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: 0 }}>
             {SERVICE_CATS.map((cat) => (
               <Link key={cat.id} to="/services" style={{ display: "block", backgroundColor: "#151515", padding: 40, border: "1px solid rgba(196,162,101,0.1)", textDecoration: "none", transition: "all 0.5s" }}>
                 <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 20, color: "#C4A265", fontWeight: 400, marginBottom: 12 }}>{cat.name}</h3>
@@ -117,7 +117,7 @@ export default function Home() {
       </section>
 
       {/* ── 6. GROWTH JOURNEY ── */}
-      <section style={{ padding: "128px 48px", backgroundColor: "#131313", overflow: "hidden" }}>
+      <section style={{ padding: "128px max(24px, 4vw)", backgroundColor: "#131313", overflow: "hidden" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(36px, 4vw, 48px)", textAlign: "center", marginBottom: 96, color: "#F0EDE8", fontWeight: 400 }}>Lifecycle Management</h2>
           <div style={{ position: "relative" }}>
@@ -136,7 +136,7 @@ export default function Home() {
       </section>
 
       {/* ── 7. STRATEGIC EXPERTISE ── */}
-      <section style={{ padding: "128px 48px", backgroundColor: "#0C0C0C" }}>
+      <section style={{ padding: "128px max(24px, 4vw)", backgroundColor: "#0C0C0C" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 96, gap: 32 }}>
             <div>
@@ -145,7 +145,7 @@ export default function Home() {
             </div>
             <p style={{ maxWidth: 480, color: "#D1C5B5", fontWeight: 300, fontStyle: "italic", fontSize: 16 }}>Specialized legal councils designed for the volatile modern market.</p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 32 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: 32 }}>
             {EXPERTISE.map((e) => (
               <Link key={e.id} to={`/expertise/${e.id}`} style={{ display: "block", padding: 40, border: "1px solid rgba(196,162,101,0.1)", backgroundColor: "#1c1b1b", textDecoration: "none", transition: "all 0.3s" }}>
                 <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, color: "#F0EDE8", fontWeight: 400, marginBottom: 16 }}>{e.title}</h3>
@@ -157,10 +157,10 @@ export default function Home() {
       </section>
 
       {/* ── 8. WHY ARRASHA ── */}
-      <section style={{ padding: "128px 48px", backgroundColor: "#0e0e0e" }}>
+      <section style={{ padding: "128px max(24px, 4vw)", backgroundColor: "#0e0e0e" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(40px, 5vw, 60px)", textAlign: "center", marginBottom: 96, color: "#F0EDE8", fontWeight: 400 }}>The Differentiator</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "64px 96px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 400px), 1fr))", gap: "48px 96px" }}>
             {WHY_ARRASHA.map((v, i) => (
               <div key={i} style={{ display: "flex", gap: 32, alignItems: "flex-start" }}>
                 <span style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 80, lineHeight: 1, color: "rgba(196,162,101,0.2)", flexShrink: 0 }}>0{i + 1}</span>
@@ -175,7 +175,7 @@ export default function Home() {
       </section>
 
       {/* ── 9. LATEST THINKING ── */}
-      <section style={{ padding: "96px 48px", backgroundColor: "#131313" }}>
+      <section style={{ padding: "96px max(24px, 4vw)", backgroundColor: "#131313" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <span style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C4A265", display: "block", marginBottom: 24 }}>Latest Thinking</span>
           {INSIGHTS.slice(0, 4).map((ins, i) => (
@@ -191,7 +191,7 @@ export default function Home() {
       </section>
 
       {/* ── 10. NEWSLETTER ── */}
-      <section style={{ backgroundColor: "#151515", padding: "60px 48px", borderTop: "1px solid rgba(196,162,101,0.1)" }}>
+      <section style={{ backgroundColor: "#151515", padding: "60px max(24px, 4vw)", borderTop: "1px solid rgba(196,162,101,0.1)" }}>
         <div style={{ maxWidth: 460, margin: "0 auto", textAlign: "center" }}>
           <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(22px, 2.8vw, 28px)", color: "#F0EDE8", fontWeight: 400, marginBottom: 8 }}>Stay ahead of regulatory change</h2>
           <p style={{ fontSize: 13, color: "#D1C5B5", fontWeight: 300, marginBottom: 20 }}>Concise, actionable analysis. No noise.</p>

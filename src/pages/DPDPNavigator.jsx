@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { Reveal, Button, Label, SectionTitle, GoldDash } from "../components/ui";
 import useCountdown from "../hooks/useCountdown";
 import { DPDP_SECTORS, DPDP_PHASES } from "../data";
 
@@ -16,94 +16,97 @@ export default function DPDPNavigator() {
       </Helmet>
 
       {/* Hero with countdown */}
-      <section className="min-h-[380px] flex items-end bg-primary pt-[120px] pb-14 px-6 relative">
-        <div className="absolute inset-0 bg-stripes pointer-events-none" />
-        <div className="max-w-[840px] relative w-full">
-          <Reveal>
-            <Label>DPDP Navigator</Label>
-            <h1 className="font-heading text-[clamp(28px,4vw,40px)] text-cream font-normal leading-[1.2] mb-3">
-              Your guide to India's data protection landscape
-            </h1>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div className="flex gap-5 mt-7 flex-wrap items-end">
-              {[
-                { value: countdown.days, label: "Days" },
-                { value: countdown.hours, label: "Hrs" },
-                { value: countdown.minutes, label: "Min" },
-                { value: countdown.seconds, label: "Sec" },
-              ].map((c, i) => (
-                <div key={i} className="text-center">
-                  <div className="font-heading text-[34px] text-gold leading-none">
-                    {String(c.value).padStart(2, "0")}
-                  </div>
-                  <div className="font-body text-[9px] tracking-[0.1em] uppercase text-mid mt-1">
-                    {c.label}
-                  </div>
+      <section style={{ minHeight: 380, display: "flex", alignItems: "flex-end", backgroundColor: "#0C0C0C", padding: "120px 48px 56px", position: "relative" }}>
+        <div style={{ maxWidth: 840, position: "relative", zIndex: 1, width: "100%" }}>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C4A265", display: "block", marginBottom: 12 }}>
+            DPDP Navigator
+          </span>
+          <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(28px, 4vw, 40px)", color: "#F0EDE8", fontWeight: 400, lineHeight: 1.2, marginBottom: 12 }}>
+            Your guide to India's data protection landscape
+          </h1>
+          <div style={{ display: "flex", gap: 20, marginTop: 28, flexWrap: "wrap", alignItems: "flex-end" }}>
+            {[
+              { value: countdown.days, label: "Days" },
+              { value: countdown.hours, label: "Hrs" },
+              { value: countdown.minutes, label: "Min" },
+              { value: countdown.seconds, label: "Sec" },
+            ].map((c, i) => (
+              <div key={i} style={{ textAlign: "center" }}>
+                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 34, color: "#C4A265", lineHeight: 1 }}>
+                  {String(c.value).padStart(2, "0")}
                 </div>
-              ))}
-              <span className="font-body text-[11px] text-light mb-0.5">
-                until full enforcement · May 2027
-              </span>
-            </div>
-          </Reveal>
+                <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, letterSpacing: "0.1em", textTransform: "uppercase", color: "#666666", marginTop: 4 }}>
+                  {c.label}
+                </div>
+              </div>
+            ))}
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: "#999999", marginBottom: 2 }}>
+              until full enforcement · May 2027
+            </span>
+          </div>
         </div>
       </section>
 
       {/* Timeline */}
-      <section className="bg-card py-14 px-6">
-        <div className="max-w-[800px] mx-auto">
-          <Reveal><Label>Timeline</Label></Reveal>
+      <section style={{ backgroundColor: "#151515", padding: "128px max(24px, 4vw)" }}>
+        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C4A265", display: "block", marginBottom: 24 }}>
+            Timeline
+          </span>
+          <div style={{ width: 96, height: 1, backgroundColor: "#C4A265", marginBottom: 48 }} />
           {DPDP_PHASES.map((p, i) => (
-            <Reveal key={i} delay={i * 0.05}>
-              <div className="flex gap-4 mb-7 items-start">
-                <div
-                  className="w-2 h-2 rounded-full mt-1.5 shrink-0"
-                  style={{ backgroundColor: p.color, boxShadow: `0 0 8px ${p.color}28` }}
-                />
-                <div>
-                  <div className="flex gap-2 items-baseline flex-wrap mb-1">
-                    <span className="font-heading text-[17px] text-cream">{p.phase}</span>
-                    <span className="font-body text-[11.5px] text-light">{p.date}</span>
-                    <span
-                      className="font-body text-[9px] tracking-[0.06em] uppercase px-1.5 py-0.5"
-                      style={{ color: p.color, backgroundColor: `${p.color}0e` }}
-                    >
-                      {p.status}
-                    </span>
-                  </div>
-                  <p className="font-body text-[12.5px] text-mid leading-relaxed">{p.desc}</p>
+            <div key={i} style={{ display: "flex", gap: 16, marginBottom: 28, alignItems: "flex-start" }}>
+              <div
+                style={{ width: 8, height: 8, borderRadius: "50%", marginTop: 6, flexShrink: 0, backgroundColor: p.color, boxShadow: `0 0 8px ${p.color}28` }}
+              />
+              <div>
+                <div style={{ display: "flex", gap: 8, alignItems: "baseline", flexWrap: "wrap", marginBottom: 4 }}>
+                  <span style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 18, color: "#F0EDE8" }}>{p.phase}</span>
+                  <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#999999" }}>{p.date}</span>
+                  <span
+                    style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, letterSpacing: "0.06em", textTransform: "uppercase", padding: "2px 6px", color: p.color, backgroundColor: `${p.color}0e` }}
+                  >
+                    {p.status}
+                  </span>
                 </div>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#666666", lineHeight: 1.6, fontWeight: 300 }}>{p.desc}</p>
               </div>
-            </Reveal>
+            </div>
           ))}
         </div>
       </section>
 
       {/* Sector guides */}
-      <section className="bg-primary py-14 px-6">
-        <div className="max-w-[800px] mx-auto">
-          <Reveal><Label>By Sector</Label></Reveal>
-          <div className="flex flex-wrap mb-5">
+      <section style={{ backgroundColor: "#0C0C0C", padding: "128px max(24px, 4vw)" }}>
+        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C4A265", display: "block", marginBottom: 24 }}>
+            By Sector
+          </span>
+          <div style={{ display: "flex", flexWrap: "wrap", marginBottom: 24 }}>
             {DPDP_SECTORS.map((s, i) => (
               <button
                 key={i}
                 onClick={() => setActiveTab(i)}
-                className={`font-body text-[11.5px] border px-3.5 py-2 cursor-pointer transition-all duration-300 ${
-                  activeTab === i
-                    ? "text-gold bg-gold-faint border-gold/15"
-                    : "text-mid bg-transparent border-gold/4 hover:text-light"
-                }`}
+                style={{
+                  fontFamily: "'DM Sans',sans-serif",
+                  fontSize: 12,
+                  border: activeTab === i ? "1px solid rgba(196,162,101,0.3)" : "1px solid rgba(196,162,101,0.1)",
+                  padding: "8px 14px",
+                  cursor: "pointer",
+                  transition: "all 0.3s",
+                  color: activeTab === i ? "#C4A265" : "#666666",
+                  backgroundColor: activeTab === i ? "rgba(196,162,101,0.07)" : "transparent",
+                }}
               >
                 {s.name}
               </button>
             ))}
           </div>
-          <div className="bg-card p-6">
+          <div style={{ backgroundColor: "#151515", padding: 24, border: "1px solid rgba(196,162,101,0.15)" }}>
             {DPDP_SECTORS[activeTab].points.map((pt, i) => (
-              <div key={i} className="flex gap-2.5 items-start mb-2.5">
-                <GoldDash />
-                <p className="font-body text-[12.5px] text-light leading-relaxed">{pt}</p>
+              <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 10 }}>
+                <span style={{ color: "#C4A265", flexShrink: 0, marginTop: 2 }}>—</span>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#999999", lineHeight: 1.6, fontWeight: 300 }}>{pt}</p>
               </div>
             ))}
           </div>
@@ -111,16 +114,16 @@ export default function DPDPNavigator() {
       </section>
 
       {/* CTA */}
-      <section className="bg-card py-14 px-6 text-center border-t border-gold/3">
-        <Reveal>
-          <SectionTitle size="text-[clamp(20px,2.5vw,26px)]">
-            Need help preparing for the DPDP Act?
-          </SectionTitle>
-          <p className="font-body text-[12.5px] text-mid mt-2 mb-5">
-            Book a consultation — ₹2,500 for a focused 15-minute session with a qualified advocate.
-          </p>
-          <Button to="/contact">Schedule a Consultation</Button>
-        </Reveal>
+      <section style={{ backgroundColor: "#151515", padding: "128px max(24px, 4vw)", textAlign: "center", borderTop: "1px solid rgba(196,162,101,0.1)" }}>
+        <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(20px, 2.5vw, 26px)", color: "#F0EDE8", fontWeight: 400, marginBottom: 8 }}>
+          Need help preparing for the DPDP Act?
+        </h2>
+        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#666666", marginBottom: 32, fontWeight: 300 }}>
+          Book a consultation — ₹2,500 for a focused 15-minute session with a qualified advocate.
+        </p>
+        <Link to="/contact" style={{ display: "inline-block", backgroundColor: "#C4A265", color: "#503804", padding: "14px 36px", textTransform: "uppercase", fontSize: 11, letterSpacing: "0.15em", textDecoration: "none", fontWeight: 500, fontFamily: "'DM Sans',sans-serif" }}>
+          Schedule a Consultation
+        </Link>
       </section>
     </div>
   );
